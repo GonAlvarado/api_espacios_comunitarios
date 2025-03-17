@@ -7,12 +7,6 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['id', 'username', 'email', 'password']
 
-class EspacioDbSerializer(serializers.ModelSerializer):
-    retiros = serializers.StringRelatedField(many=True)
-    class Meta:
-        model = EspacioDb
-        fields = '__all__'
-
 class DiaDbSerializer(serializers.ModelSerializer):
     class Meta:
         model = DiaDb
@@ -31,4 +25,13 @@ class ReferenteDbSerializer(serializers.ModelSerializer):
 class RetiroDbSerializer(serializers.ModelSerializer):
     class Meta:
         model = RetiroDb
+        fields = '__all__'
+
+class EspacioDbSerializer(serializers.ModelSerializer):
+    dia = DiaDbSerializer(many=True)
+    horario = HorarioDbSerializer(many=True)
+    referente_fk = ReferenteDbSerializer()
+    retiros = RetiroDbSerializer(many=True, read_only=True)
+    class Meta:
+        model = EspacioDb
         fields = '__all__'

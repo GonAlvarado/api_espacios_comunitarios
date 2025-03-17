@@ -5,6 +5,7 @@ from .views import(
     DiaViewSet,
     HorarioViewSet,
     ReferenteViewSet,
+    RetiroViewSet,
     login
 )
 
@@ -13,6 +14,7 @@ router.register('espacios', EspacioViewSet, basename='espacios')
 router.register('dias', DiaViewSet, basename='dias')
 router.register('horarios', HorarioViewSet, basename='horarios')
 router.register('referentes', ReferenteViewSet, basename='referentes')
+router.register('retiros', RetiroViewSet, basename='retiros')
 
 urlpatterns = [
     re_path('login', login),
